@@ -16,9 +16,13 @@ _____
 * ...
 
 ## II/ <a id='team-members'></a>Team Member
+ 
+2059009 - Lê Quang Hải Đăng
 
-...
-2059025 - Phạm Thái Linh  
+2059017 - Văn Công Gia Hưng
+
+2059025 - Phạm Thái Linh
+ 
 
 ## III/ <a id='description'></a>Description
 ...
