@@ -12,8 +12,8 @@
 _____
 
 ## I/ <a id='project-summary'></a>Project Summary
-* ...
-* ...
+
+Ecommerce and Blogging Services for Food and Beverages industries
 
 ## II/ <a id='team-members'></a>Team Member
  
