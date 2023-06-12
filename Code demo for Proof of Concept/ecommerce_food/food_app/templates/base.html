@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ecommerce Food App</title>
+    <!-- CSS -->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <!--  navigation  -->
+            </ul>
+        </nav>
+        <form action="/food/search/" method="get">
+            <input type="text" name="q" placeholder="Search for food...">
+            <button type="submit">Search</button>
+        </form>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- This is where the content from child templates will go -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Your footer content goes here -->
+    </footer>
+</body>
+</html>

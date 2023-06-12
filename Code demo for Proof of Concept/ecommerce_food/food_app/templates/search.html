@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Search Results</h1>
+  {% for food in foods %}
+    <div>
+      <h2>{{ food.name }}</h2>
+      <p>Category: {{ food.category }}</p>
+      <p>Price: ${{ food.price }}</p>
+      <img src="{{ food.image }}" alt="{{ food.name }}">
+    </div>
+  {% empty %}
+    <p>No results found.</p>
+  {% endfor %}
+{% endblock %}
