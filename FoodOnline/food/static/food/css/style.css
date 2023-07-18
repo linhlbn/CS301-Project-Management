@@ -22,16 +22,92 @@
 }
 
 .picture {
-    max-width: 100%;
-    max-height: 100%;
-    width: 95%;
-    height: 80%;
-    border-radius: 50%;
+    width: 100%;
+    height: 300px; /* Adjust the height as per your preference */
+    object-fit: cover;
+    border-radius: 15px; /* Adjust the border-radius as per your preference */
 }
 
 
-/* .picture {
-    width: 300px;
-    height: 200px;
+.orders {
+    position: relative;
+    top: 100px;
+}
+
+.shell {
+    width: 500px;
+    min-height: 300px;
+    background: rgb(196, 196, 196);
+    border-radius: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.del {
+    background-color: rgb(205, 114, 114);
+    color: rgb(250, 179, 179);
+    height: 28px;
+    width: 28px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
     border-radius: 50%;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.del:hover {
+    background-color: rgb(210, 255, 192);
+}
+
+.del:before {
+    /* content: "\00D7"; */
+    font-size: 16px;
+}
+
+li {
+    display: flex;
+    align-items: center;
+}
+
+li > span {
+    flex-grow: 1;
+}
+
+@media (max-width: 767px) {
+    .title {
+        margin: 30px;
+    }
+
+    .picture {
+        max-height: 200px;
+    }
+
+    .orders {
+        top: 50px;
+    }
+
+    .shell {
+        width: 100%;
+        min-height: 300px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+}
+
+/* .bgcus {
+    background-color: #000000;
+}
+
+.txtcus {
+    background-color: #ffffff;
 } */
+
+.card-rectangle {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+

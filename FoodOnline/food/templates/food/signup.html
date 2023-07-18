@@ -1,0 +1,63 @@
+{% extends 'food/base.html' %}
+
+{% load static %}
+
+{% block title %} Signup {% endblock %}
+
+{% block content %}
+    <div class="container-fluid p-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 bg-light p-5">
+                <h3 class="text-center mb-4">Signup</h3>
+                <p class="text-center">Already have an account? <a href="{% url 'food:login' %}" class="text-info">Log In</a></p>
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="form-group row">
+                        <label for="{{ form.username.id_for_label }}" class="col-sm-3 col-form-label font-weight-bold">{{ form.username.label }}</label>
+                        <div class="col-sm-9">
+                            {{ form.username }}
+                            {% for error in form.username.errors %}
+                                <small class="form-text text-danger">{{ error }}</small>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="{{ form.email.id_for_label }}" class="col-sm-3 col-form-label font-weight-bold">{{ form.email.label }}</label>
+                        <div class="col-sm-9">
+                            {{ form.email }}
+                            {% for error in form.email.errors %}
+                                <small class="form-text text-danger">{{ error }}</small>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="{{ form.password1.id_for_label }}" class="col-sm-3 col-form-label font-weight-bold">{{ form.password1.label }}</label>
+                        <div class="col-sm-9">
+                            {{ form.password1 }}
+                            {% for error in form.password1.errors %}
+                                <small class="form-text text-danger">{{ error }}</small>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="{{ form.password2.id_for_label }}" class="col-sm-3 col-form-label font-weight-bold">{{ form.password2.label }}</label>
+                        <div class="col-sm-9">
+                            {{ form.password2 }}
+                            {% for error in form.password2.errors %}
+                                <small class="form-text text-danger">{{ error }}</small>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-info">Signup</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

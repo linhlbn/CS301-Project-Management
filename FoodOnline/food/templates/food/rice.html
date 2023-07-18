@@ -1,0 +1,55 @@
+{% extends 'food/base.html' %}
+
+{% load static %}
+
+{% block title %} Rice {% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <h2 class="title"> Our Rice Dishes</h2>
+            <div class="row">
+                {% for rice in rices %}
+                <div class="col-md-6 p-4">
+                    <div class="card card-rectangle">
+                      <img class="card-img-top picture" src="{{ rice.rImage }}" alt="{{ rice.name }}" style="max-width: 100%; height: 300px; object-fit: cover;">
+                      <div class="card-body">
+                        <h4 class="card-title" id="rice{{ rice.id }}">{{ rice.name }}</h4>
+                        <div class="form-check-inline">
+                            <label class="form-check-inline">
+                                <input class="form-check-input" type="radio" name="rice{{ rice.id }}" value="{{ rice.priceM }}" checked>
+                                M {{ rice.priceM }} VND
+                            </label>
+                        </div>
+
+                        <div class="form-check-inline">
+                            <label class="form-check-inline">
+                                <input class="form-check-input" type="radio" name="rice{{ rice.id }}" value="{{ rice.priceL }}" >
+                                L {{ rice.priceL }} VND
+                            </label>
+                        </div>
+
+                        <div>
+                            <button class="btn btn-info mt-3" onclick="addRice('{{ rice.id }}')">Add to cart</button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-4 orders">
+            <div class="shell p-4 ">
+                <h2 class="text-center">Order list</h2>
+                <ul id="rcart"></ul>
+                <h4 class="text-right" id="rtotal">Total: 0 VND</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'food/js/rorder.js' %}"></script>
+
+{% endblock %}

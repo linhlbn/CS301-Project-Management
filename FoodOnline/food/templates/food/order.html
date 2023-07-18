@@ -1,0 +1,57 @@
+{% extends 'food/base.html' %}
+
+{% load static %}
+
+{% block title %} Order {% endblock %}
+
+{% block content%}
+    <div class="container-fluid m-4">
+
+        <div class="row">
+
+            <div class="col-md-6 text-center" >
+                <h2>Order</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th id="name">Name</th>
+                            <th id="size">Size</th>
+                            <th id="price">Price</th>
+                            <th id="rm"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in order_items %}
+                            <tr>
+                                <td>{{ item.0 }}</td>
+                                <td>{{ item.1 }}</td>
+                                <td>{{ item.2 }}</td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+                
+                <h2 id="bill">Total:</h2>
+            </div>
+
+            <div class="col-md-5 mt-4">
+                <h2 class="mb-4">Message</h2>
+                <textarea name="message" id="message" cols="30" rows="4"></textarea>
+                
+                {% if user.is_authenticated %}
+                    <div class="ml-auto m-4">
+                        <button type="submit" class="btn btn-success" onclick="order()">Submit</button>
+                    </div>
+                {% else %}
+                    <div class="ml-auto m-4">
+                        <a href="{% url 'food:login' %}" class="btn btn-primary">Log In</a>    
+                    </div>
+                {% endif %}
+            </div>    
+        </div>
+    </div>
+
+    <script src="{% static 'food/js/cart.js' %}"></script>
+{% endblock %}
