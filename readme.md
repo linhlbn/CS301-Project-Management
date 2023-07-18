@@ -32,7 +32,7 @@ Overall, our platform aims to provide a comprehensive solution for the Food and 
 
 ## III/ <a id='description'></a>Description
 
-We have utilized Django's model-view-controller (MVC) architecture to structure our project making it easier to create scalable and secure applications. Models define the data structure, views handle the logic and processing, and templates handle the presentation and user interface. This separation of concerns allows for efficient development and maintenance of our application.
+We have utilized Django's model-view-templates (MVT) architecture to structure our project making it easier to create scalable and secure applications. Models define the data structure, views handle the logic and processing, and templates handle the presentation and user interface. This separation of concerns allows for efficient development and maintenance of our application.
 
 Through close collaboration and an iterative approach, we will showcase our growth as skilled developers and effective team work skills.
 
