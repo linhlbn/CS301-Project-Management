@@ -1,67 +1,74 @@
 var rcart = document.querySelector('#rcart');
 var rtotal = document.querySelector('#rtotal');
 
-// Function to add a rice dish to the cart
+// add rice
 function addRice(rid) {
-  // Get name
-  var riceId = '#rice' + rid;
-  var name = document.querySelector(riceId).innerHTML;
+    // get name
+    var riceId = '#rice' + rid;
+    var name = document.querySelector(riceId).innerHTML;
 
-  // Get price
-  var radio = 'rice' + rid;
-  var pri = document.getElementsByName(radio);
-  var size, price;
-  if (pri[0].checked) {
-    price = pri[0].value;
-    size = 'M';
-  } else {
-    price = pri[1].value;
-    size = 'L';
-  }
+    // get price
+    var radio = 'rice' + rid;
+    var pri = document.getElementsByName(radio);
+    var size, price;
+    if (pri[0].checked) {
+        price = pri[0].value;
+        size = 'M';
+    } else {
+        price = pri[1].value;
+        size = 'L';
+    }
 
-  var orders = JSON.parse(localStorage.getItem('orders')) || [];
-  var total = localStorage.getItem('total') || 0;
+    var orders = JSON.parse(localStorage.getItem('orders')) || [];
+    var total = localStorage.getItem('total') || 0;
+    
+    var cartSize = orders.length;
 
-  var cartSize = orders.length;
+    // save item and total in local storage
+    orders[cartSize] = [name, size, price];
+    localStorage.setItem('orders', JSON.stringify(orders));
 
-  // Save item and total in local storage
-  orders[cartSize] = [name, size, price];
-  localStorage.setItem('orders', JSON.stringify(orders));
+    total = Number(total) + Number(price); 
+    localStorage.setItem('total', total);
 
-  total = Number(total) + Number(price);
-  localStorage.setItem('total', total);
+    // update number of items in shopping cart
+    var cart = document.querySelector('#cart');
+    cart.innerHTML = orders.length;
 
-  // Update number of items in shopping cart
-  var cart = document.querySelector('#cart');
-  cart.innerHTML = orders.length;
+    btn = '<button class="del" onclick="removeRice(' + cartSize + ')">x</button>';
 
-  btn = '<button class="del" onclick="removeRice(' + cartSize + ')">x</button>';
-
-  rtotal.innerHTML = 'Total: ' + total + ' VND';
-  rcart.innerHTML += '<li>' + btn + '&nbsp;' + name + ' ' + size + ': ' + price + ' VND' + '</li>';
-
-  // Update the order list in the cart.js file
-  shoppingCart();
+    rtotal.innerHTML = 'Total: ' + total + ' VND';
+    rcart.innerHTML += '<li>' + btn + '&nbsp;'  + name + ' ' + size + ': ' + price + ' VND' + '</li>';
 }
 
-// Function to remove a rice dish from the cart
+function rshoppingCart() {
+    var orders = JSON.parse(localStorage.getItem('orders')) || [];
+    var total = localStorage.getItem('total') || 0;
+    
+    var cartSize = orders.length;
+
+    rcart.innerHTML = '';
+    for (let i = 0; i < cartSize; i++) {
+        btn = '<button class="del" onclick="removeRice(' + i + ')">x</button>';
+        rcart.innerHTML += '<li>' + btn + '&nbsp;'  + orders[i][0] + ' ' + orders[i][1] +  ': ' + orders[i][2] + ' VND' + '</li>';
+    }
+    rtotal.innerHTML = 'Total: ' + total + ' VND';
+}
+
+rshoppingCart();
+
 function removeRice(n) {
-  var orders = JSON.parse(localStorage.getItem('orders')) || [];
-  var total = localStorage.getItem('total') || 0;
+    var orders = JSON.parse(localStorage.getItem('orders')) || [];
+    var total = localStorage.getItem('total') || 0;
 
-  total = Number(total) - Number(orders[n][2]);
-  orders.splice(n, 1);
+    total = Number(total) - Number(orders[n][2]);
+    orders.splice(n, 1);
 
-  // Update number of items in shopping cart
-  var cart = document.querySelector('#cart');
-  cart.innerHTML = orders.length;
+    // update number of items in shopping cart
+    var cart = document.querySelector('#cart');
+    cart.innerHTML = orders.length;
 
-  localStorage.setItem('orders', JSON.stringify(orders));
-  localStorage.setItem('total', total);
-
-  // Update the order list in the cart.js file
-  shoppingCart();
-
-  // Remove the rice item from the rice cart
-  rshoppingCart();
+    localStorage.setItem('orders', JSON.stringify(orders));
+    localStorage.setItem('total', total);
+    rshoppingCart();
 }
