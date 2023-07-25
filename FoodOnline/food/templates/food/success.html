@@ -36,7 +36,7 @@
                         <p>No items in your order.</p>
                     {% endif %}
                     <div class="mt-4">
-                        <h5 style="text-align: right;">Total Price: {{ total }} VND</h5>
+                        <h5 style="text-align: right;">Total Price: {{ total|floatformat:3 }} VND</h5>
                         <h5>Note from {{ user.username }}: {{ note }}</h5>
                     </div>
                     <hr>

@@ -30,6 +30,7 @@ function addPizza(pid) {
     localStorage.setItem('orders', JSON.stringify(orders));
 
     total = Number(total) + Number(price); 
+    total = total.toFixed(3);
     localStorage.setItem('total', total);
 
     // localStorage.clear();

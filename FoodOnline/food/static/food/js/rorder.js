@@ -29,6 +29,7 @@ function addRice(rid) {
     localStorage.setItem('orders', JSON.stringify(orders));
 
     total = Number(total) + Number(price); 
+    total = total.toFixed(3);
     localStorage.setItem('total', total);
 
     // update number of items in shopping cart

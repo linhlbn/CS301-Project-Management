@@ -1,0 +1,36 @@
+{% extends 'food/base.html' %}
+
+{% load static %}
+
+{% block title %}Search Result{% endblock %}
+
+{% block content%}
+
+<div class="container">
+  <h2 class="title">Search Results</h2>
+  <div class="row">
+      {% if search_results %}
+          {% for result in search_results %}
+          <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                  <img class="card-img-top" src="{{ result.image.url }}" alt="">
+                  <div class="card-body">
+                      <h4 class="card-title">{{ result.name }}</h4>
+                      <p class="card-text">{{ result.description }}</p>
+                      <p class="card-text">Category: {{ result.category }}</p>
+                      <p class="card-text">Size: {{ result.get_size_display }}</p>
+                      <h5>Price: {{ result.price }}</h5>
+                  </div>
+                  <div class="card-footer">
+                      <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      {% else %}
+          <h4>No results found</h4>
+      {% endif %}
+  </div>
+</div>
+
+{% endblock %}

@@ -32,6 +32,7 @@ function removeItem(n) {
     var total = localStorage.getItem('total') || 0;
 
     total = Number(total) - Number(orders[n][2]);
+    total = total.toFixed(3);
     orders.splice(n, 1);
 
     // update number of items in shopping cart

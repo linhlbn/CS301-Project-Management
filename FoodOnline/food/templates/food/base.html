@@ -21,10 +21,37 @@
 <body>
 
   <nav class="navbar navbar-expand-sm navbar-light sticky-top" style="background-color: #808080;">
+    
+<!-- search -->
+
+    <form action="{% url 'food:searchedresult' %}" method="get">
+      <input type="text" name="q" placeholder="Search products">
+      <select name="category">
+        <option value="all">All categories</option>
+        {% for category in categories %}
+          <option value="{{ category }}">{{ category }}</option>
+        {% endfor %}
+      </select>
+      <select name="size">
+        <option value="all">All sizes</option>
+        {% for size in sizes %}
+          <option value="{{ size.0 }}">{{ size.1 }}</option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="Search">
+    </form>
+
+
+
+    
+    <!-- end search -->
+    
+    
     <div class="container">
       <!-- Brand/logo -->
       <a class="navbar-brand" href="{% url 'index' %}">
-        <img src="../static/food/img/ext/icons8-kawaii-french-fries-50.png" alt="Brand Logo" class="logo" style="width: 35px; height: 35px;">
+        <img src="{% static 'food/img/ext/icons8-kawaii-french-fries-50.png' %}" alt="Brand Logo" class="logo" style="width: 35px; height: 35px;">
+
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mynav" aria-controls="">
         <span class="navbar-toggler-icon"></span>
@@ -60,21 +87,21 @@
           {% endif %}
           <li class="nav-item">
             <a href="{% url 'food:order' %}" class="nav-link">
-              <img src="../static/food/img/ext/icons8-add-shopping-cart-50.png" class="logo" style="width: 35px; height: 35px;">
+              <img src="{% static 'food/img/ext/icons8-add-shopping-cart-50.png' %}" class="logo" style="width: 35px; height: 35px;">
               <span id="cart"></span>
             </a>
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
             <a href="{% url 'food:logout' %}" class="nav-link">
-              <img src="../static/food/img/ext/icons8-user-64.png" class="logo" style="width: 35px; height: 35px;">
+              <img src="{% static 'food/img/ext/icons8-user-64.png' %}" class="logo" style="width: 35px; height: 35px;">
               Log Out
             </a>
           </li>
           {% else %}
           <li class="nav-item">
             <a href="{% url 'food:login' %}" class="nav-link">
-              <img src="../static/food/img/ext/icons8-user-64.png" class="logo" style="width: 35px; height: 35px;">
+              <img src="{% static 'food/img/ext/icons8-user-64.png' %}" class="logo" style="width: 35px; height: 35px;">
               Log In
             </a>
           </li>
@@ -101,6 +128,13 @@
   <script src="{% static 'food/js/main.js' %}"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+  
+  
+
+
+
 
 </body>
 </html>

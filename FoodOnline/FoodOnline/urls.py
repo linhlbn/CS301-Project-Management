@@ -22,4 +22,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.index, name='index'),
     path('food/', include('food.urls', namespace='food')),
+    # path('', include('food.urls')),  
+    
 ]

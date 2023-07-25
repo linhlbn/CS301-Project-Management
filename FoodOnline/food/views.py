@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Pizza, Burger, Rice
+from .models import Pizza, Burger, Rice, Product
 from django.views.decorators.csrf import csrf_exempt
 
 from django.urls import reverse
@@ -14,6 +14,13 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
+
+from itertools import chain
+
+
+
+from django.db.models import Q
+# from .models import 
 
 def index(request):
     request.session.set_expiry(0)
@@ -114,3 +121,47 @@ def logOut(request):
     return HttpResponseRedirect(reverse('index'))
     
     
+# from .models import Item
+# from items.models import Item
+
+
+
+
+def searchedresult(request):
+    query = request.GET.get('q')
+    category = request.GET.get('category')
+    size = request.GET.get('size')
+
+    all_products = Product.objects.all()
+
+    if category == "all" and size == "all":
+        queries = query.split(" ")
+        search_results = []
+        for product in all_products:
+            if any(query_word.lower() in product.name.lower() or query_word.lower() in product.description.lower() for query_word in queries):
+                search_results.append(product)
+    elif category != "all" and size == "all":
+        queries = query.split(" ")
+        search_results = []
+        for product in all_products:
+            if product.category.lower() == category.lower() and any(query_word.lower() in product.name.lower() or query_word.lower() in product.description.lower() for query_word in queries):
+                search_results.append(product)
+    elif category == "all" and size != "all":
+        queries = query.split(" ")
+        search_results = []
+        for product in all_products:
+            if product.size.lower() == size.lower() and any(query_word.lower() in product.name.lower() or query_word.lower() in product.description.lower() for query_word in queries):
+                search_results.append(product)
+    else:
+        queries = query.split(" ")
+        search_results = []
+        for product in all_products:
+            if product.category.lower() == category.lower() and product.size.lower() == size.lower() and any(query_word.lower() in product.name.lower() or query_word.lower() in product.description.lower() for query_word in queries):
+                search_results.append(product)
+
+    return render(request, 'food/searchedresult.html', {'search_results': search_results})
+
+
+
+
+

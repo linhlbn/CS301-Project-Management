@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Pizza, Burger, Rice
+from .models import Pizza, Burger, Rice, Product
 # Register your models here.
 
 
@@ -20,6 +20,14 @@ class RiceAdmin(admin.ModelAdmin):
     list_display = ('name', 'priceM', 'priceL')
 
 admin.site.register(Rice, RiceAdmin)
+
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'category', 'size', 'price')
+
+admin.site.register(Product, ProductAdmin)
+
+
 
 
 from django.contrib import admin
